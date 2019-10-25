@@ -1,6 +1,7 @@
 package cn.caber.concurrent.callable;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Description:
@@ -9,18 +10,19 @@ import java.util.concurrent.Callable;
  */
 public class CallableTask implements Callable<String> {
     private int num;
+    private ConcurrentHashMap map;
 
-    public CallableTask(int num) {
+    public CallableTask(int num, ConcurrentHashMap map) {
         this.num = num;
+        this.map = map;
     }
 
     @Override
     public String call() throws Exception {
-        if(num==2){
-            Thread.sleep(2000);
-        }
-        System.out.println(Thread.currentThread().getName()+"-callable-"+num);
-        return Thread.currentThread().getName()+"-callable-"+num;
 
+//        return map.get("stu1").toString();
+        num--;
+        return num+"main";
     }
+
 }
