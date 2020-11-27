@@ -18,16 +18,23 @@ public class ZKTicketRunnable implements Runnable {
     @Override
     public void run() {
         lock.acquire();
-        while (ticketNum > 0) {
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        try {
+            while (ticketNum > 0) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                ticketNum--;
+                System.out.println(Thread.currentThread().getName() + "还有" + ticketNum + "张票");
             }
-            ticketNum--;
-            System.out.println(Thread.currentThread().getName() + "还有" + ticketNum + "张票");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.release();
+            Thread.yield();
         }
-        lock.release();
     }
 
 

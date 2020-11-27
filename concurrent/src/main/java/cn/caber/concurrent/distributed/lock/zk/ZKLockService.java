@@ -1,6 +1,6 @@
 package cn.caber.concurrent.distributed.lock.zk;
 
-public interface LockService {
+public interface ZKLockService {
 
     void sellTicket(Integer ticketNum);
 }

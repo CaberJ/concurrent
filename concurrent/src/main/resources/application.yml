@@ -1,0 +1,28 @@
+server:
+  port: 9999
+
+
+spring:
+  redis:
+    host: 172.16.101.115
+    port: 6379
+#    cluster:
+#      nodes: "192.168.1.11:7000,192.168.1.12:7000,192.168.1.12:7001"
+#    password: ******
+    lettuce:
+      pool:
+        max-active: 1500
+        max-wait: 5000
+        max-idle: 500
+        min-idle: 100
+        shutdown-timeout: 1000
+    timeout: 60000
+
+async:
+  task:
+    poolSize: 20
+    aliveSeconds: 30
+    maxPoolSize: 30
+
+zk:
+  connectionInfo: localhost:2181
