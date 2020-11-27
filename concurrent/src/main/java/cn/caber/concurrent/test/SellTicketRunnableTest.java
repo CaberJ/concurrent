@@ -17,9 +17,10 @@ public class SellTicketRunnableTest {
 
     public static void main(String[] args) {
 
+        int initTicketNum = 100;
         ThreadPoolExecutor threadPoolExecutor = SingleThreadPoolUtil.getThreadPoolExecutor();
 
-        SellTicketRunnerTask sellTicketRunnerTask = new SellTicketRunnerTask();
+        SellTicketRunnerTask sellTicketRunnerTask = new SellTicketRunnerTask(initTicketNum);
         Thread thread1 = new Thread(sellTicketRunnerTask, "--1");
         Thread thread2 = new Thread(sellTicketRunnerTask, "--2");
         Thread thread3 = new Thread(sellTicketRunnerTask, "--3");

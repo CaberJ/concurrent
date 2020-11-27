@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 public class SellTicketCallableTest {
 
-   static Integer initTicketNum = 100;
+    static Integer initTicketNum = 100;
 
     public static void main(String[] args) {
 
@@ -23,10 +23,12 @@ public class SellTicketCallableTest {
 
         ThreadPoolExecutor threadPoolExecutor = SingleThreadPoolUtil.getThreadPoolExecutor();
 
-        if (nowTicketNum == null) nowTicketNum = initTicketNum;
+        if (nowTicketNum == null) {
+            nowTicketNum = initTicketNum;
+        }
 
         SellTicketTask sellTicketTask = new SellTicketTask(nowTicketNum);
-        while (nowTicketNum >0) {
+        while (nowTicketNum > 0) {
             Future<Integer> submit = threadPoolExecutor.submit(sellTicketTask);
             Integer s = null;
             try {
@@ -37,10 +39,10 @@ public class SellTicketCallableTest {
                 e.printStackTrace();
             }
             nowTicketNum = s;
-            System.out.println("当前剩余；"+nowTicketNum+"张票。");
+            System.out.println("当前剩余；" + nowTicketNum + "张票。");
         }
 
-        System.out.println("卖完了，当前剩余；"+nowTicketNum+"张票。");
+        System.out.println("卖完了，当前剩余；" + nowTicketNum + "张票。");
 
 
     }
