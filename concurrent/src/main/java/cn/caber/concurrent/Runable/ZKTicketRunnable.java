@@ -3,6 +3,8 @@ package cn.caber.concurrent.Runable;
 import lombok.SneakyThrows;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 
+import java.util.concurrent.TimeUnit;
+
 public class ZKTicketRunnable implements Runnable {
 
     private int ticketNum;
@@ -17,7 +19,10 @@ public class ZKTicketRunnable implements Runnable {
     @SneakyThrows
     @Override
     public void run() {
+        // 获取不到锁会一直阻塞
         lock.acquire();
+        //获取锁时最多等待100s  如果100s还没获取到锁，则获取锁失败
+        // boolean acquire = lock.acquire(100, TimeUnit.SECONDS);
         try {
             while (ticketNum > 0) {
                 try {
